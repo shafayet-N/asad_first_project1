@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Get Custom Quote - ContentPro{% endblock %}
+{% block content %}
+<section class="container" style="max-width:720px">
+  <h1 class="page-title">Tell us what you need</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div style="display:grid;gap:14px">
+      {{ form.non_field_errors }}
+      <div>
+        <label style="font-weight:600">{{ form.title.label }}</label>
+        {{ form.title }}
+      </div>
+      <div>
+        <label style="font-weight:600">{{ form.content_type.label }}</label>
+        {{ form.content_type }}
+      </div>
+      <div>
+        <label style="font-weight:600">{{ form.word_count.label }}</label>
+        {{ form.word_count }}
+      </div>
+      <div>
+        <label style="font-weight:600">{{ form.instructions.label }}</label>
+        {{ form.instructions }}
+      </div>
+    </div>
+    <div style="margin-top:16px">
+      <button class="btn btn-accent" type="submit">Submit order</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

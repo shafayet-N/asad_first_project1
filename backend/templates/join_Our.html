@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Write Flow - Professional Writing Platform</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; background-color: #f8f9fa; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    .header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .logo { display: flex; align-items: center; font-weight: bold; font-size: 1.2rem; }
+    .logo::before { content: "✍️"; margin-right: 8px; font-size: 1.5rem; }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: #6366f1; }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .phone { color: #666; font-size: 0.9rem; }
+    .btn-primary { background: #f59e0b; color: white; padding: 0.5rem 1rem; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: background 0.3s; }
+    .btn-primary:hover { background: #d97706; }
+    .login-link { color: #333; text-decoration: none; font-weight: 500; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 4rem 0; text-align: center; }
+    .hero-tag { background: #e0e7ff; color: #6366f1; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; display: inline-block; margin-bottom: 2rem; }
+    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; color: #1f2937; }
+    .hero p { font-size: 1.2rem; color: #6b7280; max-width: 600px; margin: 0 auto 3rem; }
+
+    /* Main Content */
+    .main-content { padding: 4rem 0; }
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+
+    /* Why Join Us (same height/weight as Requirements) */
+    .why-join {
+        background: white;
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        max-height: auto;
+    }
+    .why-join img {
+        width: 100%;
+        height: 150px; /* smaller height to match requirements section */
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+    .why-join h2 { font-size: 1.2rem; margin-bottom: 0.8rem; color: #1f2937; }
+    .why-join ul { list-style: none; padding-left: 1rem; }
+    .why-join li { margin-bottom: 0.5rem; position: relative; font-size: 0.9rem; color: #6b7280; }
+    .why-join li::before { content: "•"; color: #6366f1; position: absolute; left: -1rem; }
+
+    .application-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+    .application-section h2 { font-size: 1.5rem; margin-bottom: 1.5rem; color: #1f2937; }
+    .login-prompt { margin-bottom: 2rem; }
+    .login-prompt h3 { font-size: 1.2rem; margin-bottom: 1rem; color: #374151; }
+    .login-prompt p { color: #6b7280; margin-bottom: 1.5rem; }
+    .btn-login { background: #6366f1; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; transition: background 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; }
+    .btn-login:hover { background: #4f46e5; }
+    .btn-login::before { content: "👤"; }
+
+    /* Requirements Section */
+    .requirements {
+        background: white;
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .requirements h3 { font-size: 1.1rem; margin-bottom: 1rem; color: #1f2937; }
+    .requirements h3::before { content: "🔒"; margin-right: 0.5rem; }
+    .requirements ul { list-style: none; padding-left: 1rem; }
+    .requirements li { font-size: 0.9rem; color: #6b7280; margin-bottom: 0.5rem; position: relative; }
+    .requirements li::before { content: "•"; color: #6366f1; position: absolute; left: -1rem; }
+
+    /* Footer */
+    .footer { background: #f8f9fa; padding: 3rem 0 1rem; margin-top: 4rem; }
+    .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 2rem; }
+    .footer-section h4 { font-size: 1.1rem; margin-bottom: 1rem; color: #1f2937; }
+    .footer-section ul { list-style: none; padding: 0; }
+    .footer-section li { margin-bottom: 0.5rem; }
+    .footer-section a { color: #6b7280; text-decoration: none; transition: color 0.3s; }
+    .footer-section a:hover { color: #6366f1; }
+    .company-info { color: #6b7280; line-height: 1.8; }
+    .contact-info { margin-top: 1rem; }
+    .contact-info div { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .footer-bottom { border-top: 1px solid #e5e7eb; padding-top: 1rem; display: flex; justify-content: space-between; align-items: center; color: #6b7280; font-size: 0.9rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { color: #6b7280; text-decoration: none; }
+
+    @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .hero h1 { font-size: 2rem; }
+        .content-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .footer-content { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .footer-bottom { flex-direction: column; gap: 1rem; }
+    }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <div class="logo">Write Flow</div>
+            <ul class="nav-links">
+                <li><a href="Services.html">Services</a></li>
+                <li><a href="Enterprise-Domain.html">Expertise Domains</a></li>
+                <li><a href="Pricing.html">Pricing</a></li>
+                <li><a href="For_Writers.html">For Writers</a></li>
+            </ul>
+            <div class="nav-right">
+                <span class="phone">📞 +33 4 80 16 10 08</span>
+                <button class="btn-primary">Order Content</button>
+                <a href="Login.html" class="login-link">Login</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-tag">Join Our Team</div>
+        <h1>Become a Professional Writer</h1>
+        <p>Join our platform and connect with clients who value quality content. Set your own schedule and work on projects you're passionate about.</p>
+    </div>
+</section>
+
+<main class="main-content">
+    <div class="container">
+        <div class="content-grid">
+            <div class="why-join">
+                <img src="logo2.jpg" alt="Team Image">
+                <h2>Why Join Us?</h2>
+                <ul>
+                    <li>Competitive rates</li>
+                    <li>Reliable payments</li>
+                    <li>Supportive community</li>
+                    <li>Diverse projects</li>
+                </ul>
+            </div>
+
+            <div class="requirements">
+                <h3>Requirements</h3>
+                <ul>
+                    <li>Native or fluent English</li>
+                    <li>Proven writing experience</li>
+                    <li>Portfolio of published work</li>
+                    <li>Ability to meet deadlines</li>
+                    <li>Professional communication</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo">Write Flow</div>
+                <p class="company-info">The leading platform for professional content creation, connecting businesses with expert writers worldwide.</p>
+                <div class="contact-info">
+                    <div>📞 +33 4 80 16 10 08</div>
+                    <div>✉️ contact@contentpro.com</div>
+                    <div>📍 Paris, France</div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#blog">Blog Writing</a></li>
+                    <li><a href="#web">Web Copy</a></li>
+                    <li><a href="#product">Product Descriptions</a></li>
+                    <li><a href="#social">Social Media Content</a></li>
+                    <li><a href="#technical">Technical Writing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>For Writers</h4>
+                <ul>
+                    <li><a href="Join_Our.html">Join Our Team</a></li>
+                    <li><a href="#requirements">Requirements</a></li>
+                    <li><a href="#payment">Payment Terms</a></li>
+                    <li><a href="#guidelines">Writing Guidelines</a></li>
+                    <li><a href="#support">Writer Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#help">Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>© 2025 Write Flow. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+                <a href="#cookies">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+function handleLogin() { alert('Login functionality would be implemented here.'); }
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if(window.scrollY > 100) {
+        header.style.background = 'rgba(255,255,255,0.95)';
+        header.style.backdropFilter = 'blur(10px)';
+    } else {
+        header.style.background = 'white';
+        header.style.backdropFilter = 'none';
+    }
+});
+</script>
+</body>
+</html>

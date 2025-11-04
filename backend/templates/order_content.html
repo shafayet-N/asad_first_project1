@@ -1,0 +1,673 @@
+    {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Flow - Professional Content Creation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo::before {
+            content: "✍️";
+            margin-right: 8px;
+            font-size: 1.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #6366f1;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .phone {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #d97706;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #f3f4f6;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 3rem 0;
+        }
+
+        .breadcrumb {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Form Section */
+        .form-section {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: #6366f1;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-header::before {
+            content: "📋";
+            margin-right: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .file-input {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            border: 2px dashed #d1d5db;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .file-input:hover {
+            border-color: #6366f1;
+        }
+
+        .file-input input {
+            display: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #6366f1;
+            color: white;
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: #4f46e5;
+        }
+
+        /* Order Summary */
+        .summary-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: #f59e0b;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .summary-header::before {
+            content: "💰";
+            margin-right: 8px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: #6b7280;
+        }
+
+        .summary-value {
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            color: #6366f1;
+            font-weight: 700;
+        }
+
+        .price-note {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-top: 0.5rem;
+        }
+
+        .guarantees {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .guarantee-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+
+        .guarantee-item::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.5rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #d1fae5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #6b7280;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: #6366f1;
+        }
+
+        .footer-info {
+            color: #6b7280;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            margin-top: 1rem;
+        }
+
+        .contact-info div {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #9ca3af;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #6366f1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .form-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <div class="logo">Write Flow</div>
+            <ul class="nav-menu">
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'enterprise_domain' %}">Expertise Domains</a></li>
+                <li><a href="{% url 'pricing' %}">Pricing</a></li>
+                <li><a href="{% url 'for_writers' %}">For Writers</a></li>
+            </ul>
+            <div class="nav-actions">
+                <span class="phone">📞 +33 4 80 16 10 08</span>
+                <a href="{% url 'order_content' %}" class="btn btn-primary">Order Content</a>
+                <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="breadcrumb">Place Your Order</div>
+            
+            <div class="hero">
+                <h1>Get Your Custom Content Quote</h1>
+                <p>Tell us about your project and we'll match you with the perfect writer</p>
+            </div>
+
+            <div class="form-section">
+                <!-- Project Details Form -->
+                <div class="form-card">
+                    <div class="form-header">Project Details</div>
+                    
+                    <form id="quoteForm">
+                        <div class="form-group">
+                            <label for="email">Your Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" class="form-control" placeholder="you@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contentType">Content Type <span class="required">*</span></label>
+                            <select id="contentType" class="form-control" required>
+                                <option value="">Select content type</option>
+                                <option value="blog">Blog Writing</option>
+                                <option value="web-copy">Web Copy</option>
+                                <option value="product">Product Descriptions</option>
+                                <option value="social">Social Media Content</option>
+                                <option value="technical">Technical Writing</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wordCount">Word Count <span class="required">*</span></label>
+                            <input type="number" id="wordCount" class="form-control" placeholder="e.g., 1000" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Topic/Title <span class="required">*</span></label>
+                            <input type="text" id="title" class="form-control" placeholder="e.g., Benefits of Cloud Computing for Small Businesses" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Project Description <span class="required">*</span></label>
+                            <textarea id="description" class="form-control" placeholder="Describe your content requirements, target audience, tone, and any specific guidelines..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deadline">Deadline</label>
+                            <select id="deadline" class="form-control">
+                                <option value="">Select deadline</option>
+                                <option value="24h">24 hours</option>
+                                <option value="3d">3 days</option>
+                                <option value="1w">1 week</option>
+                                <option value="2w">2 weeks</option>
+                                <option value="1m">1 month</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="domain">Expertise Domain</label>
+                            <select id="domain" class="form-control">
+                                <option value="">Select domain (optional)</option>
+                                <option value="technology">Technology</option>
+                                <option value="business">Business</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="finance">Finance</option>
+                                <option value="education">Education</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keywords">Target Keywords</label>
+                            <input type="text" id="keywords" class="form-control" placeholder="e.g., cloud computing, small business, digital transformation">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Attach Files</label>
+                            <div class="file-input" onclick="document.getElementById('fileInput').click()">
+                                <input type="file" id="fileInput" multiple>
+                                <span>Choose file</span>
+                                <span id="fileName">No file chosen</span>
+                                <span>📎</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-submit">Submit Order</button>
+                    </form>
+                </div><!-- End Project Details Card -->
+
+                <!-- Order Summary -->
+                <div class="form-card">
+                    <div class="summary-header">Order Summary</div>
+                    
+                    <div class="summary-item">
+                        <span class="summary-label">Content Type:</span>
+                        <span class="summary-value" id="summaryContentType">-</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span class="summary-label">Word Count:</span>
+                        <span class="summary-value" id="summaryWordCount">- words</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span class="summary-label">Deadline:</span>
+                        <span class="summary-value" id="summaryDeadline">-</span>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <span class="summary-label">Estimated Price:</span>
+                        <span class="summary-value price" id="estimatedPrice">$0.00</span>
+                    </div>
+                    
+                    <div class="price-note">Final price may vary based on complexity</div>
+
+                    <div class="guarantees">
+                        <div class="guarantee-item">Quality Guarantee</div>
+                        <div class="guarantee-item">On-Time Delivery</div>
+                        <div class="guarantee-item">Unlimited Revisions</div>
+                    </div>
+                </div><!-- End Order Summary Card -->
+
+            </div><!-- End Form Section -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="margin-bottom: 1rem;">Write Flow</div>
+                    <div class="footer-info">
+                        The leading platform for professional content creation, connecting businesses with expert writers worldwide.
+                    </div>
+                    <div class="contact-info">
+                        <div>📞 +33 4 80 16 10 08</div>
+                        <div>✉️ contact@contentpro.com</div>
+                        <div>📍 Paris, France</div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#blog">Blog Writing</a></li>
+                        <li><a href="#web-copy">Web Copy</a></li>
+                        <li><a href="#product">Product Descriptions</a></li>
+                        <li><a href="#social">Social Media Content</a></li>
+                        <li><a href="#technical">Technical Writing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>For Writers</h3>
+                    <ul>
+                        <li><a href="#apply">Apply as Writer</a></li>
+                        <li><a href="#guidelines">Writing Guidelines</a></li>
+                        <li><a href="#faq">Writers FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2024 Write Flow. All rights reserved.</div>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // File input name display
+        const fileInput = document.getElementById('fileInput');
+        const fileName = document.getElementById('fileName');
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                fileName.textContent = Array.from(this.files).map(f => f.name).join(', ');
+            } else {
+                fileName.textContent = "No file chosen";
+            }
+        });
+
+        // Order summary auto-update
+        const form = document.getElementById('quoteForm');
+        const summaryContentType = document.getElementById('summaryContentType');
+        const summaryWordCount = document.getElementById('summaryWordCount');
+        const summaryDeadline = document.getElementById('summaryDeadline');
+        const estimatedPrice = document.getElementById('estimatedPrice');
+
+        form.addEventListener('input', function() {
+            const contentType = document.getElementById('contentType').value;
+            const wordCount = document.getElementById('wordCount').value;
+            const deadline = document.getElementById('deadline').value;
+
+            summaryContentType.textContent = contentType || "-";
+            summaryWordCount.textContent = wordCount ? wordCount + " words" : "- words";
+            summaryDeadline.textContent = deadline || "-";
+
+            // Simple pricing: $0.05 per word
+            if (wordCount) {
+                const price = (parseInt(wordCount) * 0.05).toFixed(2);
+                estimatedPrice.textContent = "$" + price;
+            } else {
+                estimatedPrice.textContent = "$0.00";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1559 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContentPro - Professional Content Writing Platform</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.logo img {
+  height: 40px;
+}
+
+/* Added logo text styling to replace placeholder images */
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #6366f1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: #6366f1;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.phone {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.btn-order {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-order:hover {
+  background: #d97706;
+}
+
+.btn-login {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-login:hover {
+  background: #f9fafb;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 8rem 0 4rem;
+  margin-top: 80px;
+}
+
+.hero-content {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hero-subtitle {
+  color: #6366f1;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-description {
+  font-size: 1.25rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #374151;
+  border: 2px solid #d1d5db;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #6366f1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Application Process */
+.application-process {
+  padding: 6rem 0;
+  background: #fff;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #64748b;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.step {
+  text-align: center;
+  padding: 2rem;
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background: #6366f1;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 1.5rem;
+}
+
+.step-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.step-description {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Why Choose Us */
+.why-choose-us {
+  padding: 6rem 0;
+  background: #f8fafc;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.benefit-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+}
+
+.benefit-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.benefit-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.benefit-badge {
+  background: #fbbf24;
+  color: #92400e;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.benefit-description {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Writer Requirements */
+.writer-requirements {
+  padding: 6rem 0;
+  background: #fff;
+}
+
+.requirements-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.requirements-left .section-title {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.requirements-left .section-subtitle {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.requirements-list {
+  list-style: none;
+}
+
+.requirements-list li {
+  padding: 0.75rem 0;
+  color: #374151;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.requirements-list li::before {
+  content: "•";
+  color: #6366f1;
+  font-size: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+}
+
+.expert-program-card {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  padding: 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.program-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.program-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.program-description {
+  color: #64748b;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.program-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.program-benefit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.benefit-label {
+  color: #374151;
+  font-weight: 500;
+}
+
+.benefit-value {
+  background: #6366f1;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Pricing Section */
+.pricing-section {
+  padding: 6rem 0;
+  background: #fff;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pricing-subtitle {
+  color: #6366f1;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.pricing-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.pricing-description {
+  font-size: 1.2rem;
+  color: #64748b;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pricing-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: all 0.3s;
+}
+
+.pricing-card:hover {
+  border-color: #6366f1;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+}
+
+.pricing-header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.pricing-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.pricing-badge {
+  background: #fbbf24;
+  color: #92400e;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.pricing-card-subtitle {
+  color: #64748b;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.pricing-features li {
+  padding: 0.5rem 0;
+  color: #374151;
+  font-weight: 500;
+}
+
+.pricing-example {
+  background: #f4e8c1;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.example-words {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.example-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+/* Delivery Speed Options */
+.delivery-speed {
+  padding: 6rem 0;
+  background: #f8fafc;
+}
+
+.delivery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.delivery-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.delivery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.delivery-card.featured {
+  border-color: #6366f1;
+  transform: scale(1.05);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #6366f1;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.delivery-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.delivery-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.delivery-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #6366f1;
+  margin-bottom: 1rem;
+}
+
+.delivery-description {
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+.delivery-time {
+  margin-bottom: 2rem;
+}
+
+.time-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.time-label {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.delivery-examples {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+.example-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  color: #374151;
+}
+
+.example-item span:last-child {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Volume Discounts */
+.volume-discounts {
+  padding: 6rem 0;
+  background: #e0e7ff;
+}
+
+.discounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.discount-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.discount-card:hover {
+  transform: translateY(-5px);
+}
+
+.discount-percentage {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #6366f1;
+  margin-bottom: 1rem;
+}
+
+.discount-threshold {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.discount-type {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Our Guarantees */
+.guarantees {
+  padding: 6rem 0;
+  background: #fff;
+}
+
+.guarantees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.guarantee-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.guarantee-card:hover {
+  border-color: #6366f1;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+}
+
+.guarantee-icon {
+  width: 60px;
+  height: 60px;
+  background: #e0e7ff;
+  color: #6366f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin: 0 auto 1.5rem;
+}
+
+.guarantee-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.guarantee-description {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 6rem 0;
+  background: #f4e8c1;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stars {
+  color: #fbbf24;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial-text {
+  color: #374151;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  background: #6366f1;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.author-name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.author-role {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 6rem 0;
+  background: #fff;
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+
+.cta-description {
+  font-size: 1.2rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Footer */
+.footer {
+  background: #f8fafc;
+  padding: 4rem 0 2rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-brand img {
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+.footer-description {
+  color: #64748b;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.footer-contact p {
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.footer-column h4 {
+  color: #1e293b;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #6366f1;
+}
+
+.footer-bottom {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-bottom p {
+  color: #64748b;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-legal a {
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-legal a:hover {
+  color: #6366f1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .pricing-title {
+    font-size: 2.5rem;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  .requirements-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-links {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-buttons,
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .pricing-grid,
+  .delivery-grid,
+  .discounts-grid,
+  .guarantees-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .delivery-card.featured {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 6rem 0 3rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .pricing-title {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .stats-grid,
+  .benefits-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-header-card {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
+
+</style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="nav-wrapper">
+             <div class="nav-brand">
+            <img src="{% static 'images/image.png' %}" alt="Logo" class="logo">
+        </div>
+            <nav class="nav">
+                <a href="{% url 'services' %}">Services</a>
+                <a href="{% url 'enterprise_domain' %}">Expertise Domains</a>
+                <a href="{% url 'pricing' %}">Pricing</a>
+                <a href="{% url 'for_writers' %}">For Writers</a>
+            </nav>
+            <div class="header-actions">
+                <span class="phone">📞 +33 4 80 16 10 08</span>
+                <button class="btn-order" onclick="window.location.href='{% url 'order_content' %}'">Get Custom Quote</button>
+                <button class="btn-login" onclick="window.location.href='{% url 'login' %}'">Login</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+     
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-header">
+                <p class="pricing-subtitle">Transparent Pricing</p>
+                <h1 class="pricing-title">Simple, Fair Pricing for Quality Content</h1>
+                <p class="pricing-description">
+                    No hidden fees, no surprises. Pay per word with competitive rates and volume 
+                    discounts available.
+                </p>
+            </div>
+            
+            <h2 class="section-title">Pricing by Content Type</h2>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3 class="pricing-card-title">Social Media Content</h3>
+                        <div class="pricing-badge">$0.12/word</div>
+                    </div>
+                    <p class="pricing-card-subtitle">SEO-optimized blog posts</p>
+                    
+                    <ul class="pricing-features">
+                        <li>✓ Keyword research</li>
+                        <li>✓ SEO optimization</li>
+                        <li>✓ Engaging content</li>
+                        <li>✓ Meta descriptions</li>
+                    </ul>
+                    
+                    <div class="pricing-example">
+                        <div class="example-words">1000 words</div>
+                        <div class="example-price">$120</div>
+                    </div>
+                </div>
+                
+
+
+
+
+
+<div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3 class="pricing-card-title">Technical Writing</h3>
+                        <div class="pricing-badge">$0.12/word</div>
+                    </div>
+                    <p class="pricing-card-subtitle">SEO-optimized blog posts</p>
+                    
+                    <ul class="pricing-features">
+                        <li>✓ Keyword research</li>
+                        <li>✓ SEO optimization</li>
+                        <li>✓ Engaging content</li>
+                        <li>✓ Meta descriptions</li>
+                    </ul>
+                    
+                    <div class="pricing-example">
+                        <div class="example-words">1000 words</div>
+                        <div class="example-price">$120</div>
+                    </div>
+                </div>
+
+
+<div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3 class="pricing-card-title">Blog Articles</h3>
+                        <div class="pricing-badge">$0.12/word</div>
+                    </div>
+                    <p class="pricing-card-subtitle">SEO-optimized blog posts</p>
+                    
+                    <ul class="pricing-features">
+                        <li>✓ Keyword research</li>
+                        <li>✓ SEO optimization</li>
+                        <li>✓ Engaging content</li>
+                        <li>✓ Meta descriptions</li>
+                    </ul>
+                    
+                    <div class="pricing-example">
+                        <div class="example-words">1000 words</div>
+                        <div class="example-price">$120</div>
+                    </div>
+                </div>
+
+
+<div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3 class="pricing-card-title">Email campaigns</h3>
+                        <div class="pricing-badge">$0.12/word</div>
+                    </div>
+                    <p class="pricing-card-subtitle">SEO-optimized blog posts</p>
+                    
+                    <ul class="pricing-features">
+                        <li>✓ Keyword research</li>
+                        <li>✓ SEO optimization</li>
+                        <li>✓ Engaging content</li>
+                        <li>✓ Meta descriptions</li>
+                    </ul>
+                    
+                    <div class="pricing-example">
+                        <div class="example-words">1000 words</div>
+                        <div class="example-price">$120</div>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3 class="pricing-card-title">Web Copy</h3>
+                        <div class="pricing-badge">$0.15/word</div>
+                    </div>
+                    <p class="pricing-card-subtitle">Converting website content</p>
+                    
+                    <ul class="pricing-features">
+                        <li>✓ Landing pages</li>
+                        <li>✓ About pages</li>
+                        <li>✓ Service descriptions</li>
+                        <li>✓ CTA optimization</li>
+                    </ul>
+                    
+                    <div class="pricing-example">
+                        <div class="example-words">1000 words</div>
+                        <div class="example-price">$150</div>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3 class="pricing-card-title">Product Descriptions</h3>
+                        <div class="pricing-badge">$0.1/word</div>
+                    </div>
+                    <p class="pricing-card-subtitle">E-commerce product copy</p>
+                    
+                    <ul class="pricing-features">
+                        <li>✓ Feature highlights</li>
+                        <li>✓ Benefit-focused</li>
+                        <li>✓ SEO-friendly</li>
+                        <li>✓ Conversion optimized</li>
+                    </ul>
+                    
+                    <div class="pricing-example">
+                        <div class="example-words">1000 words</div>
+                        <div class="example-price">$100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+    <section class="delivery-speed">
+        <div class="container">
+            <h2 class="section-title">Delivery Speed Options</h2>
+            
+            <div class="delivery-grid">
+                <div class="delivery-card">
+                    <div class="delivery-icon">🕒</div>
+                    <h3 class="delivery-title">Standard</h3>
+                    <div class="delivery-price">Base Price</div>
+                    <p class="delivery-description">Perfect for planned content</p>
+                    
+                    <div class="delivery-time">
+                        <div class="time-value">7-14 days</div>
+                        <div class="time-label">Delivery time</div>
+                    </div>
+                    
+                    <div class="delivery-examples">
+                        <div class="example-item">
+                            <span>Blog (1000 words)</span>
+                            <span>$120</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Web Copy (500 words)</span>
+                            <span>$75</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="delivery-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="delivery-icon">⚡</div>
+                    <h3 class="delivery-title">Express</h3>
+                    <div class="delivery-price">+30%</div>
+                    <p class="delivery-description">Faster delivery guaranteed</p>
+                    
+                    <div class="delivery-time">
+                        <div class="time-value">3-5 days</div>
+                        <div class="time-label">Delivery time</div>
+                    </div>
+                    
+                    <div class="delivery-examples">
+                        <div class="example-item">
+                            <span>Blog (1000 words)</span>
+                            <span>$156</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Web Copy (500 words)</span>
+                            <span>$98</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="delivery-card">
+                    <div class="delivery-icon">👑</div>
+                    <h3 class="delivery-title">Rush</h3>
+                    <div class="delivery-price">+50%</div>
+                    <p class="delivery-description">Priority handling</p>
+                    
+                    <div class="delivery-time">
+                        <div class="time-value">24-48 hours</div>
+                        <div class="time-label">Delivery time</div>
+                    </div>
+                    
+                    <div class="delivery-examples">
+                        <div class="example-item">
+                            <span>Blog (1000 words)</span>
+                            <span>$180</span>
+                        </div>
+                        <div class="example-item">
+                            <span>Web Copy (500 words)</span>
+                            <span>$113</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      
+    <section class="volume-discounts">
+        <div class="container">
+            <h2 class="section-title">Volume Discounts Available</h2>
+            <p class="section-subtitle">Save more when you order larger projects or become a regular client</p>
+            
+            <div class="discounts-grid">
+                <div class="discount-card">
+                    <div class="discount-percentage">5%</div>
+                    <div class="discount-threshold">5,000+ words</div>
+                    <div class="discount-type">Single project discount</div>
+                </div>
+                
+                <div class="discount-card">
+                    <div class="discount-percentage">10%</div>
+                    <div class="discount-threshold">10,000+ words</div>
+                    <div class="discount-type">Large project discount</div>
+                </div>
+                
+                <div class="discount-card">
+                    <div class="discount-percentage">15%</div>
+                    <div class="discount-threshold">Monthly Plans</div>
+                    <div class="discount-type">Regular client discount</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+    <section class="guarantees">
+        <div class="container">
+            <h2 class="section-title">Our Guarantees</h2>
+            
+            <div class="guarantees-grid">
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">✓</div>
+                    <h3 class="guarantee-title">Quality Guarantee</h3>
+                    <p class="guarantee-description">100% original content with unlimited revisions until satisfied</p>
+                </div>
+                
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">🕒</div>
+                    <h3 class="guarantee-title">On-Time Delivery</h3>
+                    <p class="guarantee-description">Your content delivered exactly when promised, every time</p>
+                </div>
+                
+                <div class="guarantee-card">
+                    <div class="guarantee-icon">👑</div>
+                    <h3 class="guarantee-title">Money Back</h3>
+                    <p class="guarantee-description">Not satisfied? Get your money back, no questions asked</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     
+         
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Ready to Get Started?</h2>
+            <p class="cta-description">Get an instant quote for your project. No commitment required.</p>
+            
+            <div class="cta-buttons">
+                <button class="btn-secondary"onclick="window.location.href='Order_Content.html'">Get Custom Quotes</button>
+                <button class="btn-secondary"onclick="window.location.href='Services.html'">View Services</button>
+        </div>
+    </section>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                                <img src="{% static 'images/image.png' %}" alt="Logo" class="logo">
+                    
+                    <p class="footer-description">The leading platform for professional content creation, connecting businesses with expert writers worldwide.</p>
+                    <div class="footer-contact">
+                        <p>📞 +33 4 80 16 10 08</p>
+                        <p>✉️ contact@contentpro.com</p>
+                        <p>📍 Paris, France</p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Blog Writing</a></li>
+                            <li><a href="#">Web Copy</a></li>
+                            <li><a href="#">Product Descriptions</a></li>
+                            <li><a href="#">Social Media Content</a></li>
+                            <li><a href="#">Technical Writing</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>For Writers</h4>
+                        <ul>
+                            <li><a href="Join_Our.html">Join Our Team</a></li>
+                            <li><a href="#">Requirements</a></li>
+                            <li><a href="#">Payment Terms</a></li>
+                            <li><a href="#">Writing Guidelines</a></li>
+                            <li><a href="#">Writer Support</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Help Center</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Write Flow. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault()
+    const target = document.querySelector(this.getAttribute("href"))
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+  })
+})
+
+// Header scroll effect
+window.addEventListener("scroll", () => {
+  const header = document.querySelector(".header")
+  if (window.scrollY > 100) {
+    header.style.background = "rgba(255, 255, 255, 0.95)"
+    header.style.backdropFilter = "blur(10px)"
+  } else {
+    header.style.background = "#fff"
+    header.style.backdropFilter = "none"
+  }
+})
+
+// Animate stats on scroll
+const observerOptions = {
+  threshold: 0.5,
+  rootMargin: "0px 0px -100px 0px",
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const statNumbers = entry.target.querySelectorAll(".stat-number")
+      statNumbers.forEach((stat) => {
+        animateNumber(stat)
+      })
+    }
+  })
+}, observerOptions)
+
+const statsSection = document.querySelector(".stats-grid")
+if (statsSection) {
+  observer.observe(statsSection)
+}
+
+function animateNumber(element) {
+  const target = element.textContent
+  const isPercentage = target.includes("%")
+  const isMoney = target.includes("$")
+  const isRating = target.includes("/")
+
+  let finalNumber
+  if (isPercentage) {
+    finalNumber = Number.parseInt(target)
+  } else if (isMoney) {
+    finalNumber = Number.parseFloat(target.replace("$", "").replace("M+", ""))
+  } else if (isRating) {
+    finalNumber = Number.parseFloat(target.split("/")[0])
+  } else {
+    finalNumber = Number.parseInt(target.replace("+", ""))
+  }
+
+  let current = 0
+  const increment = finalNumber / 50
+  const timer = setInterval(() => {
+    current += increment
+    if (current >= finalNumber) {
+      current = finalNumber
+      clearInterval(timer)
+    }
+
+    if (isPercentage) {
+      element.textContent = Math.floor(current) + "%"
+    } else if (isMoney) {
+      element.textContent = "$" + current.toFixed(1) + "M+"
+    } else if (isRating) {
+      element.textContent = current.toFixed(1) + "/5"
+    } else {
+      element.textContent = Math.floor(current) + "+"
+    }
+  }, 20)
+}
+
+// Button click handlers
+document.addEventListener("DOMContentLoaded", () => {
+  // Apply buttons
+  const applyButtons = document.querySelectorAll(".btn-primary")
+  applyButtons.forEach((button) => {
+    if (button.textContent.includes("Apply")) {
+      button.addEventListener("click", () => {
+        alert("Application form would open here!")
+      })
+    }
+  })
+
+  // Download guide buttons
+  const guideButtons = document.querySelectorAll(".btn-secondary")
+  guideButtons.forEach((button) => {
+    if (button.textContent.includes("Guide") || button.textContent.includes("Learn More")) {
+      button.addEventListener("click", () => {
+        alert("Writer guide download would start here!")
+      })
+    }
+  })
+
+  // Order content button
+  const orderButton = document.querySelector(".btn-order")
+  if (orderButton) {
+    orderButton.addEventListener("click", () => {
+      alert("Order content form would open here!")
+    })
+  }
+
+  // Login button
+  const loginButton = document.querySelector(".btn-login")
+  if (loginButton) {
+    loginButton.addEventListener("click", () => {
+      alert("Login form would open here!")
+    })
+  }
+})
+
+// Add hover effects to cards
+document.querySelectorAll(".stat-card, .benefit-card, .testimonial-card").forEach((card) => {
+  card.addEventListener("mouseenter", function () {
+    this.style.transform = "translateY(-5px)"
+  })
+
+  card.addEventListener("mouseleave", function () {
+    this.style.transform = "translateY(0)"
+  })
+})
+
+// Mobile menu toggle (basic implementation)
+function toggleMobileMenu() {
+  const nav = document.querySelector(".nav")
+  nav.style.display = nav.style.display === "flex" ? "none" : "flex"
+}
+
+// Add mobile menu button if needed
+if (window.innerWidth <= 768) {
+  const headerActions = document.querySelector(".header-actions")
+  const mobileMenuBtn = document.createElement("button")
+  mobileMenuBtn.innerHTML = "☰"
+  mobileMenuBtn.style.cssText = "background: none; border: none; font-size: 1.5rem; cursor: pointer;"
+  mobileMenuBtn.onclick = toggleMobileMenu
+  headerActions.prepend(mobileMenuBtn)
+}
+
+
+</script>
+</body>
+</html>

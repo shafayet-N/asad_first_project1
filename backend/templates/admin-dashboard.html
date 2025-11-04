@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Admin Console - AfroElite Writer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--primary:#6366f1;--fg:#111827;--muted:#6b7280;--bg:#f8fafc;--card:#fff;--radius:14px}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+    .container{max-width:1200px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eef2f7;z-index:20}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    nav a{color:#4b5563;text-decoration:none;margin-right:18px;font-weight:500}
+    nav a:hover{color:var(--primary)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;font-weight:600;border:0;cursor:pointer;transition:.2s}
+    .btn-primary{background:var(--primary);color:#fff;padding:10px 16px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{background:var(--card);border:1px solid #eef2f7;border-radius:var(--radius);padding:16px}
+    h1{font-size:26px;margin:18px 0}
+    h2{font-size:18px;margin-bottom:8px}
+    .list{display:flex;flex-direction:column;gap:10px}
+    .row{display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid #eef2f7;border-radius:12px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    select{border:1px solid #e5e7eb;border-radius:10px;padding:8px}
+
+
+
+
+    /* Footer */
+.footer {
+    background: #1f2937;
+    color: white;
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+}
+
+.footer-brand p {
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    border-top: 1px solid #374151;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="{% static 'images/image.png' %}" alt="Logo" class="logo">
+      
+      </div>
+      <div>
+
+         <a href="{% url 'services' %}">Services</a>
+            <a href="{% url 'enterprise_domain' %}">Expertise Domains</a>
+            <a href="{% url 'pricing' %}">Pricing</a>
+            <a href="{% url 'for_writers' %}">For Writers</a>
+            <a href="{% url 'client_dashboard' %}">Client Dashboard</a>
+      
+      
+      </div>
+      <div><button class="btn btn-primary">New Assignment</button></div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Admin Control Panel</h1>
+
+    <section class="two">
+      <div class="card">
+        <h2>Assignments</h2>
+        <div class="list">
+          <div class="row">
+            <div>
+              <strong>AW-2025-014</strong> <span class="muted">• Blog post (1,500 words)</span>
+              <div class="muted">Client: Anonymous</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <select><option>Assign writer…</option><option>Writer #112344</option><option>Writer #112350</option></select>
+              <select><option>Proofreader…</option><option>PR-27</option><option>PR-13</option></select>
+              <button class="btn btn-primary">Assign</button>
+            </div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:8px">We will spare the client the choice of editors. Admin assigns writers and proofreaders manually.</p>
+      </div>
+
+      <div class="card">
+        <h2>Moderation & Disputes</h2>
+        <div class="list">
+          <div class="row"><span>Dispute: AW-2025-009</span><button class="btn btn-primary">Open</button></div>
+          <div class="row"><span>Dispute: AW-2025-006</span><button class="btn btn-primary">Open</button></div>
+        </div>
+        <h2 style="margin-top:14px">Editors Management</h2>
+        <div class="list">
+          <div class="row"><span>Approve editor profile #112344</span><button class="btn btn-primary">Approve</button></div>
+          <div class="row"><span>Rate editor #112350</span><button class="btn btn-primary">Rate</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:16px">
+      <h2>Forum for Editors</h2>
+      <p class="muted">Create topics and assign moderators. All editors can discuss here.</p>
+      <div class="list" style="margin-top:8px">
+        <div class="row"><span>SEO Trends 2025</span><button class="btn btn-primary">Open Topic</button></div>
+        <div class="row"><span>Style Guide Updates</span><button class="btn btn-primary">Open Topic</button></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                       <!-- <img src="logo.png" alt="Logo" class="logo"> -->
+                        <img src="{% static 'images/image.png' %}" alt="Logo" class="logo">
+                        <p>The leading platform for professional content writing services. We connect you with expert writers.</p>
+                        <p>📞 +1 (555) 123-4567</p>
+                        <p>📧 hello@contentplatform.com</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Blog Writing</a></li>
+                        <li><a href="#">Web Copy</a></li>
+                        <li><a href="#">Product Descriptions</a></li>
+                        <li><a href="#">Social Media Content</a></li>
+                        <li><a href="#">Technical Writing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>For Writers</h4>
+                    <ul>
+                        <li><a href="Join_Our.html">Join Our Team</a></li>
+                        <li><a href="#">Application Process</a></li>
+                        <li><a href="#">Writer Resources</a></li>
+                        <li><a href="#">Writing Guidelines</a></li>
+                        <li><a href="#">Writer Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Write Flow. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,867 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Professional Content Writing Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .logo::before {
+            content: "📝";
+            margin-right: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #4F46E5;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .phone {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #F59E0B;
+            color: white;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary:hover {
+            background: #D97706;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #666;
+            border: 1px solid #E5E7EB;
+        }
+
+        .btn-outline:hover {
+            background: #F9FAFB;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 2rem 0 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 2rem 0 4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .blog-articles .service-icon {
+            background: #EEF2FF;
+            color: #4F46E5;
+        }
+
+        .web-copy .service-icon {
+            background: #F0F9FF;
+            color: #0EA5E9;
+        }
+
+        .product-descriptions .service-icon {
+            background: #F0FDF4;
+            color: #22C55E;
+        }
+
+        .email-campaigns .service-icon {
+            background: #FEF3C7;
+            color: #F59E0B;
+        }
+
+        .technical-writing .service-icon {
+            background: #FDF2F8;
+            color: #EC4899;
+        }
+
+        .social-media .service-icon {
+            background: #F3E8FF;
+            color: #8B5CF6;
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -8px;
+            right: 1rem;
+            background: #F59E0B;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .price-badge {
+            background: #F59E0B;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .service-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            color: #666;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: "•";
+            color: #4F46E5;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .order-btn {
+            width: 100%;
+            background: white;
+            color: #333;
+            border: 1px solid #E5E7EB;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-btn:hover {
+            background: #F9FAFB;
+            border-color: #D1D5DB;
+        }
+
+        /* Pricing Section (new) */
+        .pricing-section {
+            padding: 2.5rem 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            margin-top: 1rem;
+        }
+
+        .pricing-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        .pricing-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .pricing-card .price {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #111;
+            margin-bottom: 0.75rem;
+        }
+
+        .pricing-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background: #FEF3C7;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .benefits-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefits-section .subtitle {
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-icon {
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .benefit-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-primary {
+            background: #4F46E5;
+            color: white;
+            padding: 0.75rem 2rem;
+        }
+
+        .btn-cta-primary:hover {
+            background: #4338CA;
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: #4F46E5;
+            border: 1px solid #4F46E5;
+            padding: 0.75rem 2rem;
+        }
+
+        .btn-cta-secondary:hover {
+            background: #4F46E5;
+            color: white;
+        }
+
+        /* Writers Section (new) */
+        .writers-section {
+            padding: 3rem 0;
+        }
+
+        .writers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .writer-card {
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 1.5rem;
+            background: #fff;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: #F9FAFB;
+            padding: 3rem 0 2rem;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #4F46E5;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: #4F46E5;
+        }
+
+        /* CTA container helper (keeps CTA centered like main-content) */
+        .cta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+   <header class="header">
+    
+            <div class="nav-brand">
+            <img src="{% static 'images/image.png' %}" alt="Logo" class="logo">
+        </div>
+        
+    <div class="nav-container">
+        
+        <nav class="nav-menu" aria-label="Primary navigation">
+            <a href="{% url 'services' %}">Services</a>
+            <a href="{% url 'enterprise_domain' %}">Expertise Domains</a>
+            <a href="{% url 'pricing' %}">Pricing</a>
+            <a href="{% url 'for_writers' %}">For Writers</a>
+        </nav>
+        <div class="nav-actions">
+            <span class="phone">📞 +1 (555) 123-4567</span>
+            <a href="{% url 'login' %}" class="btn btn-outline">Login</a>
+            <a href="{% url 'order_content' %}" class="btn btn-primary">Order Content</a>
+        </div>
+    </div>
+</header>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb" style="text-align:center; font-weight:bold; font-size:20px;">
+    Our Services
+</div>
+
+
+        <!-- Hero Section -->
+        <section class="hero" id="hero" aria-labelledby="hero-heading">
+            <h1 id="hero-heading">Professional Content Writing Services</h1>
+            <p>From blog posts to marketing copy, our expert writers deliver high-quality content that drives results for your business.</p>
+        </section>
+
+        <!-- Services Grid (id added so nav links work) -->
+        <section id="services" class="services-grid" aria-labelledby="services-heading">
+            <h2 id="services-heading" style="grid-column: 1 / -1; margin-bottom: 0.5rem; font-size: 1rem; color:#666;"></h2>
+
+            <!-- Blog Articles -->
+            <div class="service-card blog-articles" role="article" aria-label="Blog Articles service">
+                <div class="popular-badge">Most Popular</div>
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">📝</div>
+                    <h3 class="service-title">Blog Articles</h3>
+                </div>
+                <div class="price-badge">From $0.12/word</div>
+                <p class="service-description">SEO-optimized blog posts that engage your audience and boost search rankings</p>
+                <ul class="service-features">
+                    <li>Keyword research</li>
+                    <li>SEO optimization</li>
+                    <li>Engaging content</li>
+                    <li>Original writing</li>
+                </ul>
+                <button class="order-btn" onclick="window.location.href='Order_Content.html'"> Order Now</button>
+            </div>
+
+            <!-- Web Copy -->
+            <div class="service-card web-copy" role="article" aria-label="Web Copy service">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">🌐</div>
+                    <h3 class="service-title">Web Copy</h3>
+                </div>
+                <div class="price-badge">From $0.15/word</div>
+                <p class="service-description">Compelling website copy that converts visitors into customers</p>
+                <ul class="service-features">
+                    <li>Landing pages</li>
+                    <li>About pages</li>
+                    <li>Service descriptions</li>
+                    <li>Call-to-action copy</li>
+                </ul>
+               <button class="order-btn" onclick="window.location.href='Order_Content.html'"> Order Now</button>
+            </div>
+
+            <!-- Product Descriptions -->
+            <div class="service-card product-descriptions" role="article" aria-label="Product Descriptions service">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">📦</div>
+                    <h3 class="service-title">Product Descriptions</h3>
+                </div>
+                <div class="price-badge">From $0.18/word</div>
+                <p class="service-description">Persuasive product descriptions that drive sales and conversions</p>
+                <ul class="service-features">
+                    <li>E-commerce copy</li>
+                    <li>Product features</li>
+                    <li>Benefit-focused</li>
+                    <li>SEO-friendly</li>
+                </ul>
+                <button class="order-btn" onclick="window.location.href='Order_Content.html'"> Order Now</button>
+            </div>
+
+            <!-- Email Campaigns -->
+            <div class="service-card email-campaigns" role="article" aria-label="Email Campaigns service">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">📧</div>
+                    <h3 class="service-title">Email Campaigns</h3>
+                </div>
+                <div class="price-badge">From $0.20/word</div>
+                <p class="service-description">High-converting email campaigns that nurture leads and boost sales</p>
+                <ul class="service-features">
+                    <li>Newsletter content</li>
+                    <li>Promotional emails</li>
+                    <li>Welcome sequences</li>
+                    <li>Drip campaigns</li>
+                </ul>
+                <button class="order-btn" onclick="window.location.href='Order_Content.html'"> Order Now</button>
+            </div>
+
+            <!-- Technical Writing -->
+            <div class="service-card technical-writing" role="article" aria-label="Technical Writing service">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">⚙️</div>
+                    <h3 class="service-title">Technical Writing</h3>
+                </div>
+                <div class="price-badge">From $0.25/word</div>
+                <p class="service-description">Clear, comprehensive technical documentation and guides</p>
+                <ul class="service-features">
+                    <li>API documentation</li>
+                    <li>User manuals</li>
+                    <li>Technical guides</li>
+                    <li>Software documentation</li>
+                </ul>
+                <button class="order-btn" onclick="window.location.href='Order_Content.html'"> Order Now</button>
+            </div>
+
+            <!-- Social Media Content -->
+            <div class="service-card social-media" role="article" aria-label="Social Media Content service">
+                <div class="service-header">
+                    <div class="service-icon" aria-hidden="true">📱</div>
+                    <h3 class="service-title">Social Media Content</h3>
+                </div>
+                <div class="price-badge">From $0.10/word</div>
+                <p class="service-description">Engaging social media posts that build audiences and engagement</p>
+                <ul class="service-features">
+                    <li>Platform-specific content</li>
+                    <li>Hashtag research</li>
+                    <li>Visual content ideas</li>
+                    <li>Consistent voice</li>
+                </ul>
+                <button class="order-btn" onclick="window.location.href='Order_Content.html'"> Order Now</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Benefits / Expertise Section (id added to match nav) -->
+    <section id="expertise" class="benefits-section" aria-labelledby="expertise-heading">
+        <h2 id="expertise-heading">Why Choose Our Content Services?</h2>
+        <p class="subtitle">We provide superior quality and reliability to deliver content that succeeds</p>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon" aria-hidden="true">⚡</div>
+                <h3 class="benefit-title">Fast Delivery</h3>
+                <p class="benefit-description">Get your content delivered on time, every time, with our reliable deadline guarantee</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon" aria-hidden="true">✅</div>
+                <h3 class="benefit-title">Quality Guaranteed</h3>
+                <p class="benefit-description">100% original content with unlimited revisions until you're completely satisfied</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon" aria-hidden="true">👥</div>
+                <h3 class="benefit-title">Expert Writers</h3>
+                <p class="benefit-description">Work with professional writers with specialized expertise in your industry and niche</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" aria-labelledby="cta-heading">
+        <div class="cta-container">
+            <h2 id="cta-heading">Ready to Get Started?</h2>
+            <p>Join thousands of satisfied clients who trust us for their content needs. Get your custom quote today!</p>
+            <div class="cta-buttons">
+                <a href="Order_Content.html".html" class="btn btn-cta-primary btn-cta-primary">Get Custom Quote</a>
+                <a href="Pricing.html" class="btn btn-cta-secondary">View Pricing</a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer" aria-label="Footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <nav class="nav">
+        <div class="nav-brand">
+            <img src="{% static 'images/image.png' %}" alt="Logo" class="logo">
+        </div>
+                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">The leading platform for professional content creation, connecting businesses with expert writers worldwide.</p>
+                <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">📞 +1 (555) 123-4567<br>✉️ hello@writeflow.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">Blog Writing</a></li>
+                    <li><a href="#services">Web Copy</a></li>
+                    <li><a href="#services">Product Descriptions</a></li>
+                    <li><a href="#services">Email Marketing</a></li>
+                    <li><a href="#services">Technical Writing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>For Writers</h3>
+                <ul>
+                    <li><a href="Join_Our.html">Join Our Team</a></li>
+                    <li><a href="#writers">Writer Portal</a></li>
+                    <li><a href="#writers">Payment Terms</a></li>
+                    <li><a href="#writers">Writing Guidelines</a></li>
+                    <li><a href="#writers">Writer Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 WriteFlow. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling only when a matching target exists and the href is not '#' (so login/signup anchors keep default behavior)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#' || href === '#!') return; // skip placeholders
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add click animation to order buttons
+        document.querySelectorAll('.order-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // simple click feedback
+                this.style.transform = 'scale(0.96)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+
+                // Simulate order process
+                const originalText = this.textContent;
+                this.textContent = 'Processing...';
+                this.disabled = true;
+                this.setAttribute('aria-busy', 'true');
+
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.disabled = false;
+                    this.removeAttribute('aria-busy');
+                    // you can trigger a modal or redirect here in a real app
+                    alert('Order action simulated. Integrate with backend to process orders.');
+                }, 1400);
+            });
+        });
+
+        // Add scroll effect to header (keeps header readable when scrolled)
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (!header) return;
+            if (window.scrollY > 80) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(6px)';
+            } else {
+                header.style.background = 'white';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Hover border color effect for service cards (also works without JS due to CSS :hover but keeps parity)
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = '#4F46E5';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = '#E5E7EB';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1244 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Content Writing Platform</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fafafa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.nav-brand .logo {
+    height: 32px;
+    width: 32px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #666;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: orange;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.phone {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.btn-primary {
+    background: orange;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary:hover {
+    background: #5855eb;
+    transform: translateY(-2px);
+}
+
+.btn-primary.large {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-secondary {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background: #d97706;
+}
+
+.btn-outline {
+    background: transparent;
+    color: #6366f1;
+    border: 2px solid #6366f1;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-outline:hover {
+    background: #6366f1;
+    color: white;
+}
+
+.language-select {
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem;
+    border-radius: 6px;
+    background: white;
+}
+
+
+/* Hero Section */
+.hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-label {
+    background: #ddd6fe;
+    color: #7c3aed;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-features {
+    display: flex;
+    gap: 2rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+}
+
+.checkmark {
+    color: #10b981;
+    font-weight: bold;
+}
+
+/* Hero Image Frame */
+.hero-image {
+    position: relative;
+    width: 100%;
+    max-width: 980px;      /* frame width */
+    height: 400px;         /* frame height */
+    margin: 0 auto;
+    border-radius: 24px;   /* rounded corners */
+    overflow: hidden;      /* clip overflowing image */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    border: 4px solid #fff; /* optional white border */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;   /* frame background if image has space */
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;    /* fully visible, not cropped */
+    object-position: center;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Optional hover zoom effect */
+.hero-img:hover {
+    transform: scale(1.05);
+}
+
+.stats-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #6366f1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-image {
+        max-width: 100%;
+        height: 200px;       /* slightly shorter on mobile */
+    }
+}
+
+
+/* Reviews Section */
+.reviews {
+    padding: 2rem 0;
+    text-align: center;
+    background: white;
+}
+
+.reviews-text {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.star {
+    color: #fbbf24;
+}
+
+.rating {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Why Choose Section */
+.why-choose {
+    padding: 5rem 0;
+    background: white;
+}
+
+.section-label {
+    color: #6366f1;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.section-description {
+    font-size: 1.1rem;
+    color: #666;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Content Types Section */
+.content-types {
+    padding: 5rem 0;
+    background: #f8fafc;
+}
+
+.content-types-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.content-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.category {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.content-stats {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number.blue {
+    color: #6366f1;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Process Section */
+.process {
+    padding: 5rem 0;
+    background: white;
+}
+
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.step {
+    text-align: center;
+    flex: 1;
+    max-width: 200px;
+}
+
+.step-icon {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.step-number {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #f59e0b;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.step-circle {
+    width: 80px;
+    height: 80px;
+    background: #6366f1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto;
+}
+
+.step h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.step p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.step-arrow {
+    font-size: 1.5rem;
+    color: #6366f1;
+    margin: 0 1rem;
+}
+
+/* Stay Informed Section */
+.stay-informed {
+    padding: 5rem 0;
+    background: #f8fafc;
+}
+
+.stay-informed-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.checklist {
+    margin-top: 2rem;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.stay-informed-features {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.stay-informed-features h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.stay-informed-features p {
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.request-changes {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.request-changes h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.request-changes p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* CTA Section */
+.cta {
+    padding: 3rem 0;
+    background: white;
+    text-align: center;
+}
+
+/* Footer */
+.footer {
+    background: #1f2937;
+    color: white;
+    padding: 3rem 0 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+}
+
+.footer-brand p {
+    color: #9ca3af;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.footer-bottom {
+    border-top: 1px solid #374151;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-types-header {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .process-steps {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .step-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .stay-informed-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+      
+    <header class="header">
+    <nav class="nav">
+        <div class="nav-brand">
+            <img src="{% static 'images/image.png' %}" alt="Logo" class="logo">
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'services' %}">Services</a>
+            <a href="{% url 'enterprise_domain' %}">Expertise Domains</a>
+            <a href="{% url 'pricing' %}">Pricing</a>
+            <a href="{% url 'for_writers' %}">For Writers</a>
+            <a href="{% url 'client_dashboard' %}">Client Dashboard</a>
+        </div>
+        <div class="nav-actions">
+            <span class="phone">📞 +1 (555) 123-4567</span>
+            <button class="btn-primary" onclick="window.location.href='{% url 'order_content' %}'">Get Quote</button>
+            <button class="btn-primary" onclick="window.location.href='{% url 'login' %}'">Login</button>
+            <select class="language-select">
+                <option>English</option>
+            </select>
+        </div>
+    </nav>
+</header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-label">#1 Content Writing Platform</p>
+                    <h1 class="hero-title">
+                        Premium <span class="gradient-text">Content Writing</span> Platform
+                    </h1>
+                    <p class="hero-description">
+                        Your complete solution for high-quality content, written by expert writers at competitive rates.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn-primary" onclick="window.location.href='Order_Content.html'">Get Custom Quote</button>
+<button class="btn-outline" onclick="window.location.href='Pricing.html'">View Pricing</button>
+
+                    </div>
+                    <div class="hero-features">
+                        <div class="feature">
+                            <span class="checkmark">✓</span>
+                            <span>100% Human</span>
+                        </div>
+                        <div class="feature">
+                            <span class="checkmark">✓</span>
+                            <span>Fast Delivery</span>
+                        </div>
+                        <div class="feature">
+                            <span class="checkmark">✓</span>
+                            <span>SEO Optimized</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="{% static 'images/logo3.webp' %}" alt="Logo">
+                    <div class="stats-badge">
+                        <div class="stat-number">230,000+</div>
+                        <div class="stat-label">Happy Clients</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="reviews">
+        <div class="container">
+            <p class="reviews-text">We work with more than 6,000+ agencies and websites</p>
+            <div class="stars">
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="rating">4.9/5</span>
+            </div>
+        </div>
+    </section>
+    <section class="why-choose">
+        <div class="container">
+            <p class="section-label">Why Choose Us</p>
+            <h2 class="section-title">Professional Content Creation</h2>
+            <p class="section-description">
+                We connect you with skilled writers who understand your industry and deliver content that drives results for your business.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Expert Writers</h3>
+                    <p>Professional writers with expertise in various industries and niches.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Quality Guaranteed</h3>
+                    <p>Every piece goes through multiple quality checks and proofreading rounds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Turnaround</h3>
+                    <p>Quick delivery without compromising on quality. Track your order progress.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>SEO Optimized</h3>
+                    <p>Content optimized for search engines to improve your online visibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">😊</div>
+                    <h3>Satisfaction Guarantee</h3>
+                    <p>100% satisfaction or full refund until you're completely satisfied.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Performance Tracking</h3>
+                    <p>Monitor the impact of your content with detailed analytics and insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content-types">
+        <div class="container">
+            <div class="content-types-header">
+                <div class="content-types-text">
+                    <p class="section-label">Content Types</p>
+                    <h2>Every Type of Content You Need</h2>
+                    <p>From blog posts to technical documentation, we handle every type of content need, with industry-specific expertise.</p>
+                    <div class="content-categories">
+                        <span class="category">📝 Blog Articles</span>
+                        <span class="category">🌐 Website Content</span>
+                        <span class="category">📧 Email Campaigns</span>
+                    </div>
+                </div>
+                <div class="content-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number blue">50K+</div>
+                            <div class="stat-label">Blog Articles</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number blue">30K+</div>
+                            <div class="stat-label">Web Copy</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number blue">100K+</div>
+                            <div class="stat-label">Product Descriptions</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number blue">25K+</div>
+                            <div class="stat-label">Social Media</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number blue">15K+</div>
+                            <div class="stat-label">Email Campaigns</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number blue">10K+</div>
+                            <div class="stat-label">Technical Writing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="process">
+        <div class="container">
+            <p class="section-label">How It Works</p>
+            <h2 class="section-title">Simple 4-Step Process</h2>
+            <p class="section-description">
+                From order to delivery, we keep you informed at every stage. Track your content's progress and request changes whenever needed.
+            </p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <span class="step-number">1</span>
+                        <div class="step-circle">📝</div>
+                    </div>
+                    <h3>Place Your Order</h3>
+                    <p>Tell us about your content needs, target audience, and any specific requirements.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">
+                        <span class="step-number">2</span>
+                        <div class="step-circle">👤</div>
+                    </div>
+                    <h3>Writer Assignment</h3>
+                    <p>We match you with the perfect writer based on your industry and content type.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">
+                        <span class="step-number">3</span>
+                        <div class="step-circle">✍️</div>
+                    </div>
+                    <h3>Writing & Review</h3>
+                    <p>Your content is written and goes through our quality assurance process.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-icon">
+                        <span class="step-number">4</span>
+                        <div class="step-circle">✅</div>
+                    </div>
+                    <h3>Delivery & Approval</h3>
+                    <p>Receive your completed content and request revisions if needed.</p>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <section class="stay-informed">
+        <div class="container">
+            <div class="stay-informed-content">
+                <div class="stay-informed-text">
+                    <p class="section-label">What else matters</p>
+                    <h2>Stay Informed Every Step</h2>
+                    <p>Track your project status in real-time. Get notifications about every stage of the process.</p>
+                    
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <span class="checkmark">✓</span>
+                            <span>Writing in progress...</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="checkmark">✓</span>
+                            <span>Quality review completed</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="checkmark">✓</span>
+                            <span>Ready for delivery</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stay-informed-features">
+                    <h3>Anonymous & Secure</h3>
+                    <p>Your identity remains protected and personally designed for you and your business.</p>
+                    <button class="btn-primary">Get Started</button>
+                    
+                    <div class="request-changes">
+                        <h4>Request Changes</h4>
+                        <p>Our content doesn't delivered as per order and the content seems very poor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cta">
+        <div class="container">
+            <button class="btn-primary large" onclick="window.location.href='Order_Content.html'">Start Your Order Today</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                       <!-- <img src="logo.png" alt="Logo" class="logo"> -->
+                        <p>The leading platform for professional content writing services. We connect you with expert writers.</p>
+                        <p>📞 +1 (555) 123-4567</p>
+                        <p>📧 hello@contentplatform.com</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Blog Writing</a></li>
+                        <li><a href="#">Web Copy</a></li>
+                        <li><a href="#">Product Descriptions</a></li>
+                        <li><a href="#">Social Media Content</a></li>
+                        <li><a href="#">Technical Writing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>For Writers</h4>
+                    <ul>
+                        <li><a href="Join_Our.html">Join Our Team</a></li>
+                        <li><a href="#">Application Process</a></li>
+                        <li><a href="#">Writer Resources</a></li>
+                        <li><a href="#">Writing Guidelines</a></li>
+                        <li><a href="#">Writer Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Write Flow. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Header scroll effect
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.backdropFilter = 'blur(10px)';
+    } else {
+        header.style.background = 'white';
+        header.style.backdropFilter = 'none';
+    }
+});
+
+// Animate stats on scroll
+function animateStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const finalNumber = target.textContent;
+                const numericValue = parseInt(finalNumber.replace(/[^\d]/g, ''));
+                const suffix = finalNumber.replace(/[\d,]/g, '');
+                
+                animateNumber(target, 0, numericValue, suffix, 2000);
+                observer.unobserve(target);
+            }
+        });
+    });
+    
+    statNumbers.forEach(stat => observer.observe(stat));
+}
+
+function animateNumber(element, start, end, suffix, duration) {
+    const startTime = performance.now();
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const current = Math.floor(start + (end - start) * easeOutQuart(progress));
+        element.textContent = current.toLocaleString() + suffix;
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+    
+    requestAnimationFrame(update);
+}
+
+function easeOutQuart(t) {
+    return 1 - Math.pow(1 - t, 4);
+}
+
+// Animate feature cards on scroll
+function animateFeatureCards() {
+    const cards = document.querySelectorAll('.feature-card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 100);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+}
+
+// Animate process steps
+function animateProcessSteps() {
+    const steps = document.querySelectorAll('.step');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 200);
+                observer.unobserve(entry.target);
+            }
+        });
+    });
+    
+    steps.forEach(step => {
+        step.style.opacity = '0';
+        step.style.transform = 'translateY(30px)';
+        step.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(step);
+    });
+}
+
+// Button hover effects
+document.querySelectorAll('.btn-primary, .btn-secondary, .btn-outline').forEach(button => {
+    button.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
+});
+
+// Mobile menu toggle (if needed)
+function createMobileMenu() {
+    const nav = document.querySelector('.nav');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Create hamburger menu button
+    const menuButton = document.createElement('button');
+    menuButton.className = 'mobile-menu-button';
+    menuButton.innerHTML = '☰';
+    menuButton.style.display = 'none';
+    menuButton.style.background = 'none';
+    menuButton.style.border = 'none';
+    menuButton.style.fontSize = '1.5rem';
+    menuButton.style.cursor = 'pointer';
+    
+    nav.insertBefore(menuButton, navLinks);
+    
+    menuButton.addEventListener('click', function() {
+        navLinks.classList.toggle('mobile-open');
+    });
+    
+    // Show/hide mobile menu button based on screen size
+    function checkScreenSize() {
+        if (window.innerWidth <= 768) {
+            menuButton.style.display = 'block';
+            navLinks.style.display = navLinks.classList.contains('mobile-open') ? 'flex' : 'none';
+        } else {
+            menuButton.style.display = 'none';
+            navLinks.style.display = 'flex';
+            navLinks.classList.remove('mobile-open');
+        }
+    }
+    
+    window.addEventListener('resize', checkScreenSize);
+    checkScreenSize();
+}
+
+// Initialize animations when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    animateStats();
+    animateFeatureCards();
+    animateProcessSteps();
+    createMobileMenu();
+    
+    // Add loading animation
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+        document.body.style.transition = 'opacity 0.5s ease';
+        document.body.style.opacity = '1';
+    }, 100);
+});
+
+// Form handling (if forms are added)
+function handleFormSubmission() {
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add loading state to submit button
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitButton.textContent = 'Sent!';
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    form.reset();
+                }, 2000);
+            }, 1500);
+        });
+    });
+}
+
+// Add CSS for mobile menu
+const mobileMenuCSS = `@media (max-width: 768px) {
+    .nav-links.mobile-open {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: 1rem;
+        z-index: 1000;
+    }
+}`;
+
+// Inject mobile menu CSS
+const style = document.createElement('style');
+style.textContent = mobileMenuCSS;
+document.head.appendChild(style);
+
+</script>
+</body>
+</html>

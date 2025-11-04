@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}My Orders - ContentPro{% endblock %}
+{% block content %}
+<section class="container">
+  <h1 class="page-title">My Orders</h1>
+  {% if orders %}
+    <div style="display:grid;gap:12px">
+      {% for o in orders %}
+        <article style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#fff">
+          <h3 style="margin:0">{{ o.title }}</h3>
+          <p class="muted">Type: {{ o.get_content_type_display }} • Words: {{ o.word_count }} • Status: {{ o.status }}</p>
+          <p style="white-space:pre-wrap">{{ o.instructions|truncatechars:220 }}</p>
+          <p class="muted">Submitted {{ o.created_at|date:"M d, Y H:i" }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="muted">No orders yet. <a href="{% url 'orders:new' %}">Create your first order</a>.</p>
+  {% endif %}
+</section>
+{% endblock %}

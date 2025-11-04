@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}My Profile - ContentPro{% endblock %}
+{% block content %}
+<section class="container">
+  <h1 class="page-title">My Writer Profile</h1>
+  <article style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#fff">
+    <p><strong>Bio:</strong></p>
+    <p style="white-space:pre-wrap">{{ profile.bio|default:"Not set" }}</p>
+    <p><strong>Expertise Domains:</strong> {{ profile.expertise_domains|default:"Not set" }}</p>
+    <p><strong>Rate per word:</strong> {{ profile.rate_per_word }}</p>
+    <p><strong>Phone:</strong> {{ profile.phone|default:"Not set" }}</p>
+    <p><strong>Location:</strong> {{ profile.location|default:"Not set" }}</p>
+  </article>
+  <div style="margin-top:12px">
+    <a class="btn btn-outline" href="{% url 'writers:profile_edit' %}">Edit profile</a>
+  </div>
+</section>
+{% endblock %}
