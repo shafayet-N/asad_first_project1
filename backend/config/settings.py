@@ -22,7 +22,7 @@ SECRET_KEY = os.getenv(
     'SECRET_KEY',
     'django-insecure-vercel-key-change-this-in-production-12345'
 )
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'False'
 ALLOWED_HOSTS = ['*']
 
 # Applications
