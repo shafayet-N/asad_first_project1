@@ -1,19 +1,33 @@
 {
   "buildCommand": "pip install -r requirements.txt && cd backend && python manage.py collectstatic --noinput",
-  "outputDirectory": "backend/staticfiles",
+  "outputDirectory": ".",
   "framework": "django",
+  "python": {
+    "version": "3.11"
+  },
   "env": {
-    "PYTHONUNBUFFERED": "1"
+    "PYTHONUNBUFFERED": "1",
+    "DEBUG": "False"
   },
   "functions": {
-    "backend/config/wsgi.py": {
-      "runtime": "python3.11"
+    "api/index.py": {
+      "runtime": "python3.11",
+      "maxDuration": 30,
+      "memory": 1024,
+      "includeFiles": "backend/**"
     }
   },
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "backend/config/wsgi.py"
+      "src": "/static/(.*)",
+      "dest": "/backend/staticfiles/$1",
+      "headers": {
+        "cache-control": "public, max-age=3600"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.py"
     }
   ]
 }
